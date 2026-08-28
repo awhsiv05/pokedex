@@ -16,6 +16,10 @@ func repl(config *config) {
 		userInput := scanner.Text()
 		cleanInput := cleanInput(userInput)
 		cmd := cleanInput[0]
+		config.arguments = make([]string, len(cleanInput)-1)
+		for index, arg := range cleanInput[1:] {
+			config.arguments[index] = arg
+		}
 		if _, ok := config.registry[cmd]; !ok {
 			fmt.Println("Unknown command")
 		} else {
