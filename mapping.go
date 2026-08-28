@@ -147,6 +147,10 @@ func Explore(cnf *config) error {
 		}
 	}()
 
+	if res.StatusCode != http.StatusOK {
+		return errors.New(res.Status)
+	}
+
 	data, err := io.ReadAll(res.Body)
 	if err != nil {
 		return err
